@@ -1,6 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./gql/schema.ts";
+import { Query } from "./lib/query.ts";
 import mongoose from "mongoose";
 
 const MONGO_URL = Deno.env.get("MONGO_URL");
@@ -16,9 +17,7 @@ console.info("🚀 Connected to MongoDB");
 const server = new ApolloServer({
   typeDefs,
   resolvers: {
-    Query: {
-      hola: () => "Hola Mundo",
-    },
+    Query,
   },
 });
 
